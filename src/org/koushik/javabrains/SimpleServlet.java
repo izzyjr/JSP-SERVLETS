@@ -23,7 +23,7 @@ public class SimpleServlet extends HttpServlet {
 		System.out.println("Hello from get method!");
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
-		writer.println("<h3>Hello in HTML</h3>");
+		writer.println("<h3>Hello From Servlet GET Method - Web Page View</h3>");
 	}
 
 }
