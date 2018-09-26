@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class SimpleServlet
@@ -22,8 +23,19 @@ public class SimpleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Hello from get method!");
 		response.setContentType("text/html");
+		String userName = request.getParameter("userName");
+		HttpSession session = request.getSession();
+
+		if (userName != "" && userName != null) {
+			session.setAttribute("savedUserName", userName);
+		}
+		
 		PrintWriter writer = response.getWriter();
+		
 		writer.println("<h3>Hello From Servlet GET Method - Web Page View</h3>");
+		writer.println("<h3>Hello " + userName + "!</h3>");
+		writer.println("<h3>Request Parameter has Username: " + userName + "</h3>");
+		writer.println("<h3>Session Parameter has Username: " + (String) session.getAttribute("savedUserName") + "</h3>");
 	}
 
 }
